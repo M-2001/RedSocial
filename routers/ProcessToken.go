@@ -16,17 +16,17 @@ var Email string
 var IDUsuario string
 
 /*TokenProcess funcion principal para verificar*/
-func TokenProcess(token string) (*models.Claim, bool, string, error) {
-	key := []byte("Programacion - RedSocial")
+func TokenProcess(tk string) (*models.Claim, bool, string, error) {
+	key := []byte("ProgramacionRedSocial")
 	claims := &models.Claim{}
 
-	splitToken := strings.Split(token, "Bearer")
+	splitToken := strings.Split(tk, "Bearer")
 	if len(splitToken) != 2 {
-		return claims, false, string(""), errors.New("El formato es Invalido")
+		return claims, false, string(" "), errors.New("el formato es invalido")
 	}
-	token = strings.TrimSpace(splitToken[1])
 
-	token1, err := jwt.ParseWithClaims(token, claims, func(token2 *jwt.Token) (interface{}, error) {
+	tk = strings.TrimSpace(splitToken[1])
+	tkn, err := jwt.ParseWithClaims(tk, claims, func(token *jwt.Token) (interface{}, error) {
 		return key, nil
 	})
 	if err == nil {
@@ -37,8 +37,8 @@ func TokenProcess(token string) (*models.Claim, bool, string, error) {
 		}
 		return claims, find, IDUsuario, nil
 	}
-	if !token1.Valid {
-		return claims, false, string(""), errors.New("Token invalido")
+	if !tkn.Valid {
+		return claims, false, string(""), errors.New("token invalido")
 	}
 	return claims, false, string(""), err
 }

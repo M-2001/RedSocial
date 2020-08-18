@@ -28,6 +28,7 @@ func BuscoPerfil(ID string) (models.Usuario, error) {
 	perfil.Password = ""
 	if err != nil {
 		fmt.Println("Registro No encontrado" + err.Error())
+		return perfil, err
 	}
 	return perfil, nil
 }

@@ -9,7 +9,7 @@ import (
 
 /*GeneroJWT sirve para generar un nuevo token*/
 func GeneroJWT(user models.Usuario) (string, error) {
-	myKey := []byte("Programacion - RedSocial")
+	myKey := []byte("ProgramacionRedSocial")
 	payload := jwt.MapClaims{
 		"email":     user.Email,
 		"nombre":    user.Nombre,

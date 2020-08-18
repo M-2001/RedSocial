@@ -11,15 +11,15 @@ import (
 func VerProfile(w http.ResponseWriter, r *http.Request) {
 	ID := r.URL.Query().Get("id")
 	if len(ID) < 1 {
-		http.Error(w, "Debe enviar el parametro ID", http.StatusBadRequest)
+		http.Error(w, "Debe enviar el parametro ID ", http.StatusBadRequest)
 		return
 	}
 	profile, err := bd.BuscoPerfil(ID)
 	if err != nil {
-		http.Error(w, "Ocurrio un error al buscar el registro"+err.Error(), 400)
+		http.Error(w, "Ocurrio un error al buscar el registro "+err.Error(), 400)
 		return
 	}
-	w.Header().Set("context-type", "application/json")
+	w.Header().Set("content-type", "application/json")
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(profile)
 }
