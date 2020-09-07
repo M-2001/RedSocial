@@ -21,6 +21,18 @@ func Manejadores() {
 	router.HandleFunc("/updateperfil", middlew.ChequeoBD(middlew.ValidacionJWT(routers.UpdateProfile))).Methods("PUT")
 	router.HandleFunc("/publicacion", middlew.ChequeoBD(middlew.ValidacionJWT(routers.GrabarPublicacion))).Methods("POST")
 	router.HandleFunc("/readPublicacion", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ReadPublicaciones))).Methods("GET")
+	router.HandleFunc("/deletePublicacion", middlew.ChequeoBD(middlew.ValidacionJWT(routers.DeletePublicacion))).Methods("DELETE")
+	/*EndPoints para imagenes*/
+	router.HandleFunc("/upAvatar", middlew.ChequeoBD(middlew.ValidacionJWT(routers.UpAvatar))).Methods("POST")
+	router.HandleFunc("/upBanner", middlew.ChequeoBD(middlew.ValidacionJWT(routers.UpBanner))).Methods("POST")
+	router.HandleFunc("/mostrarAvatr", middlew.ChequeoBD(routers.MostrarAvatar)).Methods("GET")
+	router.HandleFunc("/mostrarBanner", middlew.ChequeoBD(routers.MostrarBanner)).Methods("GET")
+	/*EndPoint para insertar una relacion*/
+	router.HandleFunc("/insertRelation", middlew.ChequeoBD(middlew.ValidacionJWT(routers.Relation))).Methods("POST")
+	/*EndPoint eliminar relacion*/
+	router.HandleFunc("/unfollow", middlew.ChequeoBD(middlew.ValidacionJWT(routers.DeleteRelacion))).Methods("DELETE")
+	/*mostrar relacion*/
+	router.HandleFunc("/consultaRelacion", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ConsultaRelacion))).Methods("GET")
 
 	PORT := os.Getenv("PORT")
 	if PORT == "" {

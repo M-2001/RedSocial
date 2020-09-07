@@ -20,6 +20,7 @@ func InsertPublicacion(t models.GraboPublicacion) (string, bool, error) {
 	registro := bson.M{
 		"userid":      t.UserId,
 		"publicacion": t.Publicacion,
+		"foto":        t.Foto,
 		"fecha":       t.FechaPublicacion,
 	}
 	result, err := col.InsertOne(contt, registro)
