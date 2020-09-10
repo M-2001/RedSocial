@@ -33,7 +33,10 @@ func Manejadores() {
 	router.HandleFunc("/unfollow", middlew.ChequeoBD(middlew.ValidacionJWT(routers.DeleteRelacion))).Methods("DELETE")
 	/*mostrar relacion*/
 	router.HandleFunc("/consultaRelacion", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ConsultaRelacion))).Methods("GET")
-
+	/*mostrar usuarios relacionados*/
+	router.HandleFunc("/listaUsuarios", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ListUsers))).Methods("GET")
+	/*todas las publicaciones de los seguidore*/
+	router.HandleFunc("/allPublicaciones", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ReadPublicacionesSeguidores))).Methods("GET")
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
 		PORT = "8080"
