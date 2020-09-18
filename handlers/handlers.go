@@ -25,6 +25,7 @@ func Manejadores() {
 	/*EndPoints para imagenes*/
 	router.HandleFunc("/upAvatar", middlew.ChequeoBD(middlew.ValidacionJWT(routers.UpAvatar))).Methods("POST")
 	router.HandleFunc("/upBanner", middlew.ChequeoBD(middlew.ValidacionJWT(routers.UpBanner))).Methods("POST")
+	router.HandleFunc("/upImagePublicacion", middlew.ChequeoBD(middlew.ValidacionJWT(routers.UpImagePublicacion))).Methods("POST")
 	router.HandleFunc("/mostrarAvatr", middlew.ChequeoBD(routers.MostrarAvatar)).Methods("GET")
 	router.HandleFunc("/mostrarBanner", middlew.ChequeoBD(routers.MostrarBanner)).Methods("GET")
 	/*EndPoint para insertar una relacion*/

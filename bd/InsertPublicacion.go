@@ -21,6 +21,7 @@ func InsertPublicacion(t models.GraboPublicacion) (string, bool, error) {
 		"userid":      t.UserId,
 		"publicacion": t.Publicacion,
 		"foto":        t.Foto,
+		"tecnologias": t.Tecnologias,
 		"fecha":       t.FechaPublicacion,
 	}
 	result, err := col.InsertOne(contt, registro)
