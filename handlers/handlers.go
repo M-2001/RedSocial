@@ -38,6 +38,10 @@ func Manejadores() {
 	router.HandleFunc("/listaUsuarios", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ListUsers))).Methods("GET")
 	/*todas las publicaciones de los seguidore*/
 	router.HandleFunc("/allPublicaciones", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ReadPublicacionesSeguidores))).Methods("GET")
+	// Rutas Comentarios
+	router.HandleFunc("/comentar", middlew.ChequeoBD(middlew.ValidacionJWT(routers.HacerComentario))).Methods("POST")
+
+	router.HandleFunc("/deleteComentario", middlew.ChequeoBD(middlew.ValidacionJWT(routers.DeleteComentario))).Methods("DELETE")
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
 		PORT = "8080"
