@@ -13,6 +13,8 @@ type PublicacionesSeguidores struct {
 	UserID         string             `bson:"userid" json:"userid,omitempty"`
 	Publicacion    struct {
 		Publicacionn string    `bson:"publicacion" json:"publicacion,omitempty"`
+		Code         string    `bson:"code" json:"code,omitempty"`
+		Tecnologias  string    `bson:"tecnologias" json:"tecnologias,omitempty"`
 		Fecha        time.Time `bson:"fecha" json:"fecha,omitempty"`
 		ID           string    `bson:"_id" json:"_id,omitempty"`
 	}
