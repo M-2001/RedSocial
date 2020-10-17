@@ -12,11 +12,16 @@ import (
 /*HacerComentario sirve para agregar un coemtario a publicacion en la base de datos*/
 func HacerComentario(w http.ResponseWriter, r *http.Request) {
 
+	ID := r.URL.Query().Get("publicacionid")
+	if len(ID) < 1 {
+		http.Error(w, "El parametro ID es obligatorio", http.StatusBadRequest)
+		return
+	}
 	var cmtr models.Comentario
 	err := json.NewDecoder(r.Body).Decode(&cmtr)
 	registro := models.CommentPublications{
 		UserID:          IDUsuario,
-		PublicacionID:   cmtr.PublicacionID,
+		PublicacionID:   ID,
 		Comentario:      cmtr.Comentario,
 		FechaComentario: time.Now(),
 	}
