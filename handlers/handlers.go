@@ -36,8 +36,10 @@ func Manejadores() {
 	router.HandleFunc("/consultaRelacion", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ConsultaRelacion))).Methods("GET")
 	/*mostrar usuarios relacionados*/
 	router.HandleFunc("/listaUsuarios", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ListUsers))).Methods("GET")
-	/*todas las publicaciones de los seguidore*/
+	/*todas las publicaciones de los seguidores*/
 	router.HandleFunc("/allPublicaciones", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ReadPublicacionesSeguidores))).Methods("GET")
+	//Mostrar Una publicacion
+	router.HandleFunc("/Apublication", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ReadUnaPublicacion))).Methods("GET")
 	// Rutas Comentarios
 	router.HandleFunc("/comentar", middlew.ChequeoBD(middlew.ValidacionJWT(routers.HacerComentario))).Methods("POST")
 	// Rutas reaccion
