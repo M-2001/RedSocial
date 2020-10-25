@@ -42,10 +42,13 @@ func Manejadores() {
 	router.HandleFunc("/Apublication", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ReadUnaPublicacion))).Methods("GET")
 	// Rutas Comentarios
 	router.HandleFunc("/comentar", middlew.ChequeoBD(middlew.ValidacionJWT(routers.HacerComentario))).Methods("POST")
+	//mostrar comentarios
+	router.HandleFunc("/mostrarComentarios", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ReadCometarios))).Methods("GET")
 	// Rutas reaccion
 	router.HandleFunc("/reaccion", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ReaccionPublicacion))).Methods("POST")
-
+	//eliminar comentario
 	router.HandleFunc("/deleteComentario", middlew.ChequeoBD(middlew.ValidacionJWT(routers.DeleteComentario))).Methods("DELETE")
+
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
 		PORT = "8080"

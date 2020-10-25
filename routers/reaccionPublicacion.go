@@ -21,11 +21,6 @@ func ReaccionPublicacion(w http.ResponseWriter, r *http.Request) {
 		UserID:        IDUsuario,
 		PublicacionID: ID,
 	}
-
-	/*var reaccion models.ReaccionCollection
-	reaccion.UserID = IDUsuario
-	reaccion.PublicacionID = ID*/
-
 	_, status, err := bd.ReaccionPublicacion(reaccion)
 	if err != nil {
 		http.Error(w, "Ocurrio un error inesperado! intente nuevamente"+err.Error(), http.StatusBadRequest)
@@ -35,7 +30,6 @@ func ReaccionPublicacion(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Ocurrio un error inesperado! no se pudi insertar reaccion"+err.Error(), http.StatusBadRequest)
 		return
 	}
-	/*w.Header().Set("Content-type", "application/json")
-	w.WriteHeader(http.StatusCreated)*/
+
 	json.NewEncoder(w).Encode(reaccion)
 }

@@ -13,5 +13,5 @@ type MostrarUnaPublicacion struct {
 	Publicacion      string             `bson:"publicacion" json:"publicacion,omitempty"`
 	Code             string             `bson:"code" json:"code,omitempty"`
 	Tecnologias      string             `bson:"tecnologias" json:"tecnologias,omitempty"`
-	FechaPublicacion time.Time          `bson:"fechaPublicacion" json:"fechaPublicacion"`
+	FechaPublicacion time.Time          `bson:"fecha" json:"fecha"`
 }
