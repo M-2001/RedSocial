@@ -6,8 +6,8 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-/*ReaccionCollection sirve para dar like a una publicacion*/
-type ReaccionCollection struct {
+/*MostrarReacciones sirve para dar like a una publicacion*/
+type MostrarReacciones struct {
 	ID             primitive.ObjectID `bson:"_id" json:"id,omitempty"`
 	UserID         string             `bson:"userid" json:"userId,omitempty"`
 	PublicacionID  string             `bson:"publicacionid" json:"publicacionid,omitempty"`

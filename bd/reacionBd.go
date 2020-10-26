@@ -20,6 +20,7 @@ func ReaccionPublicacion(t models.ReaccionCollection) (string, bool, error) {
 	registro := bson.M{
 		"userid":        t.UserID,
 		"publicacionid": t.PublicacionID,
+		"fechareaccion": time.Now(),
 	}
 	result, err := col.InsertOne(contt, registro)
 	if err != nil {

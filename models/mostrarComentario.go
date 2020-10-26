@@ -6,7 +6,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-/*MostrarComentarios estructura que se encargara de mostrar una publicacione*/
+/*MostrarComentarios estructura que se encargara de mostrar comentarios*/
 type MostrarComentarios struct {
 	ID              primitive.ObjectID `bson:"_id" json:"id,omitempty"`
 	UserID          string             `bson:"userid" json:"userid,omitempty"`
