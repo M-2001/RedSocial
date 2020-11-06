@@ -9,7 +9,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 )
 
-/*ReadReaccionesDeUnaPublicacion servira para leer una publicacion usuarios*/
+/*ReadReaccionesDeUnaPublicacion servira para leer reacciones de una publicacion*/
 func ReadReaccionesDeUnaPublicacion( /*ID string*/ ) ([]*models.ReaccionCollection, bool) {
 	contt, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()

@@ -9,8 +9,8 @@ import (
 
 /*ReadReacciones servira para leer todas las de una publicacion*/
 func ReadReacciones(w http.ResponseWriter, r *http.Request) {
-	IDP := r.URL.Query().Get("id")
-	if len(IDP) < 1 {
+	IDp := r.URL.Query().Get("idP")
+	if len(IDp) < 1 {
 		http.Error(w, "Debe enviar el parametro id para ver reacciones de la publicacion", http.StatusBadRequest)
 		return
 	}
@@ -25,7 +25,7 @@ func ReadReacciones(w http.ResponseWriter, r *http.Request) {
 	}*/
 	//pag := int64(page)
 
-	respuesta, correct := bd.ReadReacciones(IDP)
+	respuesta, correct := bd.ReadReacciones(IDp)
 	if correct == false {
 		http.Error(w, "Error a leer el contenido!!! Intente nuevamente", http.StatusBadRequest)
 		return

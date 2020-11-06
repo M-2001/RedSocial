@@ -9,7 +9,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 )
 
-/*ReadComentarios servira para leer un nunmero de publicaciones realizadas por los usuarios*/
+/*ReadComentarios servira para leer un nunmero de comentarios por publicacion*/
 func ReadComentarios(IDP string) ([]*models.MostrarComentarios, bool) {
 	contt, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()

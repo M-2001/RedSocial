@@ -40,19 +40,19 @@ func Manejadores() {
 	router.HandleFunc("/allPublicaciones", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ReadPublicacionesSeguidores))).Methods("GET")
 	//Mostrar Una publicacion
 	router.HandleFunc("/Apublication", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ReadUnaPublicacion))).Methods("GET")
+
 	// Rutas Comentarios
 	router.HandleFunc("/comentar", middlew.ChequeoBD(middlew.ValidacionJWT(routers.HacerComentario))).Methods("POST")
 	//mostrar comentarios
 	router.HandleFunc("/mostrarComentarios", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ReadCometarios))).Methods("GET")
+	//eliminar comentario
+	router.HandleFunc("/deleteComentario", middlew.ChequeoBD(middlew.ValidacionJWT(routers.DeleteComentario))).Methods("DELETE")
 
 	// Rutas reaccion
 	router.HandleFunc("/reaccion", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ReaccionPublicacion))).Methods("POST")
-	router.HandleFunc("/mostrarreacciones", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ReadReacciones))).Methods("GET")
+	router.HandleFunc("/mostrarReacciones", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ReadReacciones))).Methods("GET")
 	//mostrar todas las reacciones
 	router.HandleFunc("/AllReacciones", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ReadReaccionesDeUnaPublicacion))).Methods("GET")
-
-	//eliminar comentario
-	router.HandleFunc("/deleteComentario", middlew.ChequeoBD(middlew.ValidacionJWT(routers.DeleteComentario))).Methods("DELETE")
 
 	PORT := os.Getenv("PORT")
 	if PORT == "" {

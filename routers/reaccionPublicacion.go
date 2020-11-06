@@ -30,6 +30,7 @@ func ReaccionPublicacion(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Ocurrio un error inesperado! no se pudi insertar reaccion"+err.Error(), http.StatusBadRequest)
 		return
 	}
-
+	w.Header().Set("Content-type", "application/json")
+	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(reaccion)
 }
