@@ -29,3 +29,24 @@ func ReaccionPublicacion(t models.ReaccionCollection) (string, bool, error) {
 	ObjID, _ := result.InsertedID.(primitive.ObjectID)
 	return ObjID.String(), true, nil
 }
+
+/*DELETE REACTION*/
+
+/*DeleteReaccion servira para boorar la relacion de la bd*/
+func DeleteReaccion(ID string, UserID string) error {
+	contt, cancel := context.WithTimeout(context.Background(), 15*time.Second)
+	defer cancel()
+
+	db := MongoC.Database("RedSocial")
+	col := db.Collection("reaccion")
+
+	objID, _ := primitive.ObjectIDFromHex(ID)
+
+	query := bson.M{
+		"_id":    objID,
+		"userID": UserID,
+	}
+
+	_, err := col.DeleteOne(contt, query)
+	return err
+}

@@ -11,7 +11,7 @@ import (
 func Relation(w http.ResponseWriter, r *http.Request) {
 	ID := r.URL.Query().Get("id")
 	if len(ID) < 1 {
-		http.Error(w, "El parametro ID es oblifatorio", http.StatusBadRequest)
+		http.Error(w, "El parametro ID es obligatorio", http.StatusBadRequest)
 		return
 	}
 
@@ -25,7 +25,7 @@ func Relation(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if status == false {
-		http.Error(w, "Ocurrio un error inesperado! no se pudi insertar relacion"+err.Error(), http.StatusBadRequest)
+		http.Error(w, "Ocurrio un error inesperado! no se pudo insertar relacion"+err.Error(), http.StatusBadRequest)
 		return
 	}
 	w.WriteHeader(http.StatusCreated)

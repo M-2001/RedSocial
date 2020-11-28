@@ -51,8 +51,16 @@ func Manejadores() {
 	// Rutas reaccion
 	router.HandleFunc("/reaccion", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ReaccionPublicacion))).Methods("POST")
 	router.HandleFunc("/mostrarReacciones", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ReadReacciones))).Methods("GET")
+	router.HandleFunc("/delreaccion", middlew.ChequeoBD(middlew.ValidacionJWT(routers.DeleteReaccion))).Methods("DELETE")
 	//mostrar todas las reacciones
 	router.HandleFunc("/AllReacciones", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ReadReaccionesDeUnaPublicacion))).Methods("GET")
+
+	//Reacciones en los comentarios
+	router.HandleFunc("/reactComment", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ReactComment))).Methods("POST")
+
+	router.HandleFunc("/readRCommet", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ReadReactComment))).Methods("GET")
+
+	router.HandleFunc("/delRCommet", middlew.ChequeoBD(middlew.ValidacionJWT(routers.DeleteReactComment))).Methods("DELETE")
 
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
