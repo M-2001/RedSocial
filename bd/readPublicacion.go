@@ -11,13 +11,13 @@ import (
 )
 
 /*ReadPublicaciones servira para leer un nunmero de publicaciones realizadas por los usuarios*/
-func ReadPublicaciones(ID string, pagina int64) ([]*models.MostrarPublicaciones, bool) {
+func ReadPublicaciones(ID string, pagina int64) ([]*models.GraboPublicacion, bool) {
 	contt, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
 	db := MongoC.Database("RedSocial")
 	col := db.Collection("publicacion")
 
-	var respuesta []*models.MostrarPublicaciones
+	var respuesta []*models.GraboPublicacion
 	query := bson.M{
 		"userid": ID,
 	}
@@ -32,7 +32,7 @@ func ReadPublicaciones(ID string, pagina int64) ([]*models.MostrarPublicaciones,
 		return respuesta, false
 	}
 	for marcador.Next(context.TODO()) {
-		var register models.MostrarPublicaciones
+		var register models.GraboPublicacion
 		err := marcador.Decode(&register)
 		if err != nil {
 			return respuesta, false

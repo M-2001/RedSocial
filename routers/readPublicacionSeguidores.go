@@ -2,7 +2,9 @@ package routers
 
 import (
 	"encoding/json"
+	"io"
 	"net/http"
+	"os"
 	"strconv"
 
 	"github.com/M-2001/RedSocial/bd"
@@ -20,9 +22,16 @@ func ReadPublicacionesSeguidores(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	resp, correct := bd.ReadPublicacionesSeguidores(IDUsuario, page)
-	if correct == false {
-		http.Error(w, "Error al leer publicaciones", http.StatusBadRequest)
-		return
+	for i := range resp {
+		OpenFile, err := os.Open("uploads/publicaciones/" + resp[i].Publicacion.Foto)
+		if correct == false {
+			http.Error(w, "Error a leer el contenido", http.StatusBadRequest)
+			return
+		}
+		_, err = io.Copy(w, OpenFile)
+		if err != nil {
+			http.Error(w, "Error al copiar foto", http.StatusBadRequest)
+		}
 	}
 	w.Header().Set("Content-type", "application/json")
 	w.WriteHeader(http.StatusCreated)

@@ -35,18 +35,24 @@ func ReaccionPublicacion(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(reaccion)
 }
 
-/*DeleteReaccion realiza el borrado de la relacion de los usuarios*/
+/*DeleteReaccion realiza el borrado de la reaccion de los usuarios*/
 func DeleteReaccion(w http.ResponseWriter, r *http.Request) {
 	ID := r.URL.Query().Get("id")
-	if len(ID) < 1 {
+	/* if len(ID) < 1 {
 		http.Error(w, "Debe enviarse el parametro id", http.StatusBadRequest)
 		return
-	}
-	err := bd.DeleteReaccion(ID, IDUsuario)
-	if err != nil {
+	} */
+
+	var p models.ReaccionCollection
+
+	p.UserID = IDUsuario
+	p.PublicacionID = ID
+
+	status, err := bd.DeleteReaccion(p)
+	if err != nil || status == false {
 		http.Error(w, "Ocurrio un error al intentar eliminar reaccion"+err.Error(), http.StatusBadRequest)
 		return
 	}
-	w.Header().Set("Content-type", "application/json")
+	// w.Header().Set("Content-type", "application/json")
 	w.WriteHeader(http.StatusCreated)
 }
