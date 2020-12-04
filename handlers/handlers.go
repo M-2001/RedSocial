@@ -41,6 +41,12 @@ func Manejadores() {
 	//Mostrar Una publicacion
 	router.HandleFunc("/Apublication", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ReadUnaPublicacion))).Methods("GET")
 
+	//mostrar Foto Publicacion
+	router.HandleFunc("/mostrarFotoPub", middlew.ChequeoBD(middlew.ValidacionJWT(routers.MostrarFotoPublicacion))).Methods("GET")
+
+	// //mostrar Foto publicacion seguidor
+	// router.HandleFunc("/mostrarPubSeguidor", middlew.ChequeoBD(middlew.ValidacionJWT(routers.MostrarFotoPublicacionSeguidores))).Methods("GET")
+
 	// Rutas Comentarios
 	router.HandleFunc("/comentar", middlew.ChequeoBD(middlew.ValidacionJWT(routers.HacerComentario))).Methods("POST")
 	//mostrar comentarios
