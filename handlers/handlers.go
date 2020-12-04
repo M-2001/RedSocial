@@ -20,6 +20,10 @@ func Manejadores() {
 	router.HandleFunc("/verperfil", middlew.ChequeoBD(middlew.ValidacionJWT(routers.VerProfile))).Methods("GET")
 	router.HandleFunc("/updateperfil", middlew.ChequeoBD(middlew.ValidacionJWT(routers.UpdateProfile))).Methods("PUT")
 	router.HandleFunc("/publicacion", middlew.ChequeoBD(middlew.ValidacionJWT(routers.GrabarPublicacion))).Methods("POST")
+
+	//Insert Publication Json
+	router.HandleFunc("/publicacionJ", middlew.ChequeoBD(middlew.ValidacionJWT(routers.GrabarPublicacionJSON))).Methods("POST")
+
 	router.HandleFunc("/readPublicacion", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ReadPublicaciones))).Methods("GET")
 	router.HandleFunc("/deletePublicacion", middlew.ChequeoBD(middlew.ValidacionJWT(routers.DeletePublicacion))).Methods("DELETE")
 	/*EndPoints para imagenes*/
@@ -42,10 +46,7 @@ func Manejadores() {
 	router.HandleFunc("/Apublication", middlew.ChequeoBD(middlew.ValidacionJWT(routers.ReadUnaPublicacion))).Methods("GET")
 
 	//mostrar Foto Publicacion
-	router.HandleFunc("/mostrarFotoPub", middlew.ChequeoBD(middlew.ValidacionJWT(routers.MostrarFotoPublicacion))).Methods("GET")
-
-	// //mostrar Foto publicacion seguidor
-	// router.HandleFunc("/mostrarPubSeguidor", middlew.ChequeoBD(middlew.ValidacionJWT(routers.MostrarFotoPublicacionSeguidores))).Methods("GET")
+	router.HandleFunc("/mostrarFotoPub", middlew.ChequeoBD(routers.MostrarFotoPublicacion)).Methods("GET")
 
 	// Rutas Comentarios
 	router.HandleFunc("/comentar", middlew.ChequeoBD(middlew.ValidacionJWT(routers.HacerComentario))).Methods("POST")
