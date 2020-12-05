@@ -106,7 +106,7 @@ func GrabarPublicacionJSON(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "No se ha logrado insertar la Publicacion", 400)
 		return
 	}
-	w.Header().Set("Content-type", "ParseMultipartForm/form-data")
+	w.Header().Set("Content-type", "application/json")
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(registro)
 }
